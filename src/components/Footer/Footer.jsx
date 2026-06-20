@@ -43,7 +43,7 @@ export default function Footer() {
             © Copyright 2025. All Rights Reserved by Legna Interiors
           </p>
           <p className="footer-made-by">
-            Made with care by <span>Legna Interiors</span>
+            Made with care by <span>Legnainteriorz</span>
           </p>
         </div>
       </div>
