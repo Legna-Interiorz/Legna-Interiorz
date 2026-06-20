@@ -88,7 +88,7 @@ export default function Contact() {
                 <div className="contact-info-icon">✉️</div>
                 <div>
                   <div className="contact-info-label">Email</div>
-                  <div className="contact-info-value">Legnainteriorz@gmail.com</div>
+                  <div className="contact-info-value">legnainteriorz@gmail.com</div>
                 </div>
               </div>
               <div className="contact-info-item">
@@ -114,7 +114,23 @@ export default function Contact() {
                 aria-label="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
-              >📷 Instagram</a>
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" style={{ marginRight: '8px', verticalAlign: 'middle' }}>
+                  <defs>
+                    <radialGradient id="ig-grad1" cx="30%" cy="107%" r="150%">
+                      <stop offset="0%" stopColor="#fdf497" />
+                      <stop offset="5%" stopColor="#fdf497" />
+                      <stop offset="45%" stopColor="#fd5949" />
+                      <stop offset="60%" stopColor="#d6249f" />
+                      <stop offset="90%" stopColor="#285AEB" />
+                    </radialGradient>
+                  </defs>
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#ig-grad1)" />
+                  <circle cx="12" cy="12" r="4.5" fill="none" stroke="white" strokeWidth="1.8" />
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="white" />
+                </svg>
+                Legnainteriorz
+              </a>
             </div>
           </div>
 
@@ -138,7 +154,7 @@ export default function Contact() {
               <div className="contact-status-card error">
                 <div className="status-icon">⚠️</div>
                 <h3>Something went wrong</h3>
-              <p>We couldn't send your message. Please try again or email us directly at Legnainteriorz@gmail.com.</p>
+                <p>We couldn't send your message. Please try again or email us directly at Legnainteriorz@gmail.com.</p>
                 <button className="form-submit" onClick={() => setStatus('idle')}>
                   Try Again
                 </button>
