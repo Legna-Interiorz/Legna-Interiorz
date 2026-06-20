@@ -2,7 +2,7 @@ import './WhatsAppButton.css'
 
 // Replace with the real business number (country code + number, no + or spaces)
 // Example: India → 919876543210
-const WHATSAPP_NUMBER = '919787976565'
+const WHATSAPP_NUMBER = '919500880588'
 const WHATSAPP_TEXT = encodeURIComponent("Hi, I'm interested in your interior design services.")
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`
 
