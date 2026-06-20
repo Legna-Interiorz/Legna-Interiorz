@@ -139,9 +139,6 @@ const ProjectGalleryCard = forwardRef(({ categoryData }, ref) => {
           ))}
         </div>
         <h3 className="project-title">{currentItem.title}</h3>
-        <a href="#" className="project-arrow" aria-label={`View ${currentItem.title}`}>
-          View Project →
-        </a>
       </div>
     </article>
   )
