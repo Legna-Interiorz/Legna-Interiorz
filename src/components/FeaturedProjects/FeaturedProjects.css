@@ -1,0 +1,380 @@
+.projects-section {
+  background: var(--bg);
+}
+
+/* ==================== */
+/* 1. INTRO AREA        */
+/* ==================== */
+.projects-intro {
+  padding: 160px 5% 80px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projects-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  width: 100%;
+  gap: 40px;
+}
+
+.projects-header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.projects-header-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.projects-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: var(--radius-round);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.projects-heading {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.projects-subtext {
+  font-size: clamp(16px, 1.2vw, 18px);
+  color: var(--text-muted);
+  max-width: 400px;
+  line-height: 1.6;
+  text-align: right;
+  margin: 0;
+}
+
+/* ==================== */
+/* 2. PINNED CARD AREA  */
+/* ==================== */
+.projects-stack-container {
+  width: 100%;
+  position: relative;
+  padding-bottom: 20vh;
+  /* Let the very last card stick and scroll out naturally */
+}
+
+.project-sticky-wrapper {
+  position: sticky;
+  top: 20vh;
+  /* 20vh top offset + 80vh card height = 100vh (perfectly flush at bottom edge) */
+  height: 80vh;
+  /* Matches the card volume */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.project-card {
+  width: 90%;
+  max-width: 1100px;
+  height: 100%;
+  max-height: 80vh;
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  /* All overlays are absolute inside this */
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+  transform-origin: top center;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+
+
+/* Full-bleed image wrapper - fills the entire card */
+.project-image-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: fadeInGallery 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.project-real-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Deep gradient scrim at the bottom for legible text overlay */
+.project-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      transparent 30%,
+      rgba(0, 0, 0, 0.15) 55%,
+      rgba(0, 0, 0, 0.75) 80%,
+      rgba(0, 0, 0, 0.92) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Text overlay — sits over the scrim at the bottom */
+.project-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 48px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.project-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.project-title {
+  font-size: clamp(28px, 4.5vw, 56px);
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.project-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+}
+
+.project-arrow:hover {
+  color: white;
+  gap: 14px;
+}
+
+/* Navigation arrows — positioned absolutely on the card */
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.project-card:hover .gallery-nav-btn {
+  opacity: 1;
+}
+
+.gallery-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gallery-nav-btn.prev {
+  left: 24px;
+}
+
+.gallery-nav-btn.next {
+  right: 24px;
+}
+
+/* Category pill — top left corner */
+.gallery-category-label {
+  position: absolute;
+  top: 28px;
+  left: 36px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 18px;
+  border-radius: 100px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  z-index: 5;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+@keyframes fadeInGallery {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Base button block unpinned */
+.projects-view-all-wrapper {
+  background: var(--bg);
+  padding: 40px 0 100px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==================== */
+/* MOBILE BREAKPOINT    */
+/* ==================== */
+@media (max-width: 900px) {
+  .projects-intro {
+    padding: 100px 5% 40px 5%;
+  }
+
+  .projects-pin-wrapper {
+    height: auto;
+    overflow: visible;
+  }
+
+  .projects-header {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+
+  .projects-header-right {
+    justify-content: flex-start;
+  }
+
+  .projects-subtext {
+    text-align: left;
+  }
+
+  .projects-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 5%;
+  }
+
+  .project-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none !important;
+    opacity: 1 !important;
+    height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-intro {
+    padding: 80px 5% 32px 5%;
+  }
+
+  .projects-card-section {
+    padding-bottom: 48px;
+  }
+
+  .project-card {
+    height: 60vh;
+    min-height: 360px;
+    border-radius: 18px;
+  }
+
+  /* Overlay text: tighter on mobile */
+  .project-overlay-text {
+    padding: 28px 24px;
+    gap: 10px;
+  }
+
+  .project-title {
+    font-size: clamp(20px, 6vw, 32px);
+  }
+
+  .project-tag {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .project-arrow {
+    font-size: 13px;
+  }
+
+  /* Always show nav arrows on mobile (no hover) */
+  .gallery-nav-btn {
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .gallery-nav-btn.prev {
+    left: 12px;
+  }
+
+  .gallery-nav-btn.next {
+    right: 12px;
+  }
+
+  .gallery-category-label {
+    font-size: 11px;
+    padding: 6px 12px;
+    top: 16px;
+    left: 16px;
+  }
+
+  /* View all button */
+  .projects-view-all-wrapper {
+    padding: 32px 0 64px 0;
+  }
+}

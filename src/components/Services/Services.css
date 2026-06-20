@@ -1,0 +1,246 @@
+.services {
+  padding: 120px 0;
+  background: var(--bg);
+}
+
+.services-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.services-left {
+  position: sticky;
+  top: 100px;
+}
+
+.services-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: var(--radius-round);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.services-heading {
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.services-subtext {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 400px;
+  margin-bottom: 40px;
+}
+
+.services-image-card {
+  width: 100%;
+  max-width: 380px;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transform: rotate(-3deg);
+  box-shadow: 0 24px 60px var(--shadow-strong);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  background: var(--bg-card);
+}
+
+.services-image-card:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.services-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: white;
+}
+
+.services-image-placeholder .monitor-icon {
+  font-size: 56px;
+  opacity: 0.9;
+}
+
+.services-image-placeholder p {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+/* Accordion */
+.services-accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item {
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.accordion-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  cursor: pointer;
+  gap: 20px;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.accordion-header:hover .accordion-title {
+  color: var(--accent);
+}
+
+.accordion-title {
+  flex: 1;
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.accordion-icon {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1;
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-shrink: 0;
+}
+
+.accordion-item.open .accordion-icon {
+  transform: rotate(45deg);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.accordion-item.open .accordion-body {
+  max-height: 300px;
+}
+
+.accordion-content {
+  padding: 0 0 24px 0;
+}
+
+.accordion-content ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordion-content ul li {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Create a minimal dash or dot that aligns with the FAQ subtext look */
+.accordion-content ul li::before {
+  content: '—';
+  color: var(--text-muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .services-inner {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .services-left {
+    position: relative;
+    top: 0;
+    display: none;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 80px 0;
+  }
+
+  .services-heading {
+    font-size: clamp(28px, 9vw, 44px);
+  }
+
+  .services-image-card {
+    transform: none;
+    /* remove tilt on mobile */
+    max-width: 100%;
+    height: 220px;
+  }
+
+  .services-image-card:hover {
+    transform: none;
+  }
+
+  .accordion-header {
+    padding: 18px 0;
+  }
+
+  .accordion-title {
+    font-size: 15px;
+  }
+
+  .services-card-slot {
+    display: none;
+    /* hide the hero card slot on mobile — not needed */
+  }
+}
+
+
+.services-card-slot {
+  width: clamp(280px, 24vw, 380px);
+  height: clamp(400px, 34vw, 540px);
+  margin-bottom: 40px;
+}

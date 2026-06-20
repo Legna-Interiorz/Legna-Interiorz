@@ -1,0 +1,98 @@
+/* Hide native cursor globally */
+* {
+  cursor: none !important;
+}
+
+/* ── Precise dot — snaps to the exact hotspot ── */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1A1A1A;
+  pointer-events: none;
+  z-index: 99999;
+  margin-left: -3px;
+  margin-top: -3px;
+  transition: background 0.3s ease, opacity 0.2s;
+}
+
+.cursor-dot.dark {
+  background: #F0ECE6;
+}
+
+/* ── Trailing orb — lags behind giving natural distance ── */
+.cursor-orb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99998;
+
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  border-radius: 50%;
+
+  /*
+   * Sphere illusion:
+   * - A soft, transparent circle (mostly see-through)
+   * - Gold accent tint so it reads as the brand orb
+   * - Radial gradient: bright specular top-left → transparent bottom-right
+   */
+  background: radial-gradient(
+    circle at 33% 30%,
+    rgba(255, 255, 255, 0.30) 0%,
+    rgba(197, 164, 126, 0.22) 40%,
+    rgba(197, 164, 126, 0.06) 75%,
+    transparent 100%
+  );
+  border: 1.5px solid rgba(197, 164, 126, 0.45);
+
+  /* Subtle inner shadow to add depth to the sphere */
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 5px rgba(100, 60, 10, 0.15),
+    0 2px 12px rgba(0, 0, 0, 0.07);
+
+  transition:
+    width  0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    margin 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.2s;
+}
+
+/* Dark mode — slightly more visible gold ring */
+.cursor-orb.dark {
+  background: radial-gradient(
+    circle at 33% 30%,
+    rgba(255, 255, 255, 0.20) 0%,
+    rgba(197, 164, 126, 0.20) 40%,
+    rgba(197, 164, 126, 0.05) 75%,
+    transparent 100%
+  );
+  border: 1.5px solid rgba(197, 164, 126, 0.50);
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.20),
+    inset 0 -2px 5px rgba(60, 30, 0, 0.25),
+    0 2px 16px rgba(0, 0, 0, 0.20);
+}
+
+/* Expands slightly over interactive elements */
+.cursor-orb.hovered {
+  width: 46px;
+  height: 46px;
+  margin-left: -23px;
+  margin-top: -23px;
+  border-color: rgba(197, 164, 126, 0.70);
+}
+
+/* Touch screens — restore native cursor */
+@media (hover: none) {
+  * { cursor: auto !important; }
+  .cursor-dot,
+  .cursor-orb { display: none; }
+}

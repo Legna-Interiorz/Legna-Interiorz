@@ -1,0 +1,554 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding-top: 80px;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  min-height: calc(100vh - 80px);
+}
+
+/* Left text column */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero-name {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero-word-digital {
+  font-size: clamp(72px, 9.5vw, 128px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 280px;
+}
+
+.hero-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-light);
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.hero-scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--text-light);
+}
+
+/* Center card */
+.hero-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-card-wrap {
+  position: relative;
+  z-index: 50;
+}
+
+.hero-card {
+  width: clamp(280px, 24vw, 380px);
+  height: clamp(400px, 34vw, 540px);
+  position: relative;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  border-radius: 52px;
+  /* NOTE: overflow:hidden must NOT be set here — it breaks preserve-3d */
+}
+
+.hero-card-inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.hero-card-front,
+.hero-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 52px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px var(--shadow-strong), 0 8px 24px var(--shadow);
+  background: var(--bg-card);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+.hero-card-back {
+  transform: rotateY(180deg);
+}
+
+.hero-card-back-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: white;
+  margin-top: -10px;
+}
+
+.back-placeholder {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.back-placeholder .monitor-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.hero-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Logo wrapper — black bg by default; invert filter makes SVG paths appear white */
+.hero-card-logo-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  padding: 32px;
+}
+
+.hero-card-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Original SVG is black-on-transparent; invert makes it white-on-black */
+  filter: invert(1);
+  transition: filter 0.35s ease;
+}
+
+/* Dark mode: white bg + black logo */
+[data-theme="dark"] .hero-card-logo-wrap {
+  background: #fff;
+}
+
+[data-theme="dark"] .hero-card-logo-img {
+  filter: none;
+}
+
+/* Back face: horizontal logo — DON'T mirror it */
+.hero-card-back .hero-card-img {
+  transform: scaleX(-1);
+}
+
+/* Override for logo images on back face — keep natural orientation */
+.hero-card-back .hero-card-img[src*="logo"] {
+  transform: none;
+}
+
+
+/* Bottom gradient so tag pill is always legible over the photo */
+.hero-card-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.10) 40%,
+      transparent 70%);
+  pointer-events: none;
+}
+
+.hero-card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #6B6BFF 0%, #a259ff 50%, #ff6b9d 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.hero-card-placeholder-icon {
+  font-size: 80px;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.hero-card-placeholder-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.hero-card-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-round);
+  padding: 6px 14px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Hi button – floating cursor follower */
+.hero-hi-btn {
+  position: absolute;
+  bottom: -30px;
+  left: -50px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(107, 107, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  animation: floatBob 3s ease-in-out infinite;
+  border: none;
+  z-index: 5;
+}
+
+.hero-hi-btn:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 12px 40px rgba(107, 107, 255, 0.5);
+}
+
+@keyframes floatBob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Right text column */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.hero-word-designer {
+  font-size: clamp(72px, 9.5vw, 128px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--text);
+  text-align: right;
+}
+
+/* Smaller "i" at the start of iNTERIORZ */
+.hero-small-i {
+  font-size: 83px;
+
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+}
+
+.hero-stat {
+  text-align: right;
+}
+
+.hero-stat-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.hero-toggle-wrap {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 999;
+  background: var(--bg-card);
+  padding: 10px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.hero-toggle-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-round);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toggle-switch input:checked+.toggle-slider {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.toggle-switch input:checked+.toggle-slider::before {
+  transform: translateY(-50%) translateX(24px);
+  background: var(--accent);
+}
+
+.toggle-icon {
+  font-size: 16px;
+}
+
+/* Scroll-down arrow */
+.hero-scroll-arrow {
+  position: absolute;
+  bottom: 48px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.scroll-arrow-icon {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text);
+}
+
+@keyframes scrollBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    padding: 100px 24px 120px;
+    gap: 40px;
+    text-align: center;
+    justify-items: center;
+    min-height: auto;
+  }
+
+  .hero-right {
+    align-items: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-subtitle {
+    text-align: center;
+    max-width: 360px;
+  }
+
+  .hero-scroll-hint {
+    justify-content: center;
+  }
+}
+
+/* ── Mobile (768px) ── */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 72px;
+  }
+
+  .hero-content {
+    padding: 80px 20px 100px;
+    gap: 32px;
+  }
+
+  /* Shrink the hero card for small screens */
+  .hero-card {
+    width: 240px;
+    height: 320px;
+  }
+
+  .hero-card-spacer {
+    width: 240px;
+    height: 320px;
+  }
+
+  /* Disable 3D flip on mobile — show front face only, no transform */
+  .hero-card-inner {
+    transform: none !important;
+    transform-style: flat;
+    animation: none;
+    transition: none;
+  }
+
+  .hero-card-back {
+    display: none;
+    /* hide the back face entirely on mobile */
+  }
+
+  .hero-card-front {
+    transform: none;
+    backface-visibility: visible;
+  }
+
+  /* Reduce large display text */
+  .hero-word-digital,
+  .hero-word-designer {
+    font-size: clamp(52px, 16vw, 80px);
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .hero-stat-num {
+    font-size: 24px;
+  }
+
+  /* Move the fixed toggle to bottom-left on mobile to avoid overlap */
+  .hero-toggle-wrap {
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 14px;
+    gap: 8px;
+  }
+
+  .hero-toggle-label {
+    font-size: 12px;
+  }
+
+  /* Hide scroll arrow on mobile — not needed when card takes full width */
+  .hero-scroll-arrow {
+    display: none;
+  }
+
+  /* Hi button — keep but bring closer */
+  .hero-hi-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+    bottom: -20px;
+    left: -20px;
+  }
+}
+
+.hero-card-spacer {
+  width: clamp(280px, 24vw, 380px);
+  height: clamp(400px, 34vw, 540px);
+}

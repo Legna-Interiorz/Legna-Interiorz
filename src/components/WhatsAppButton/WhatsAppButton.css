@@ -1,0 +1,74 @@
+.whatsapp-btn {
+  position: fixed;
+  /* Sit just above the dark mode toggle pill (which is at bottom: 40px + ~50px height) */
+  bottom: 110px;
+  right: 40px;
+  z-index: 998;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  box-shadow:
+    0 4px 20px rgba(37, 211, 102, 0.45),
+    0 8px 32px rgba(37, 211, 102, 0.2);
+
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+
+  /* Subtle pulse to draw attention */
+  animation: waPulse 2.5s ease-in-out infinite;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.12);
+  box-shadow:
+    0 6px 28px rgba(37, 211, 102, 0.55),
+    0 12px 40px rgba(37, 211, 102, 0.28);
+  animation: none; /* pause pulse on hover for cleanliness */
+}
+
+.whatsapp-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+@keyframes waPulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 20px rgba(37, 211, 102, 0.45),
+      0 0 0 0 rgba(37, 211, 102, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 4px 20px rgba(37, 211, 102, 0.45),
+      0 0 0 12px rgba(37, 211, 102, 0);
+  }
+}
+
+/* Respect no-hover (touch) screens */
+@media (hover: none) {
+  .whatsapp-btn {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-btn {
+    bottom: 90px;   /* clear the toggle pill */
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+  .whatsapp-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
