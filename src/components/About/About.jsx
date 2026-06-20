@@ -68,7 +68,7 @@ export default function About() {
               </div>
               <div className="about-contact-item">
                 <div className="about-contact-icon">✉️</div>
-                <span>[legnainteriorz@gmail.com]</span>
+                <span>legnainteriorz@gmail.com</span>
               </div>
               <div className="about-contact-item">
                 <div className="about-contact-icon">📍</div>
