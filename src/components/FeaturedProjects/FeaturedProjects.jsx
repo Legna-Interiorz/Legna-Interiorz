@@ -69,11 +69,6 @@ const PROJECTS = [
         tags: ['Logistics', 'Equipment'],
         image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80',
       },
-      {
-        title: 'Steel Manufacturing Plant',
-        tags: ['Heavy Industry', 'Engineering'],
-        image: 'https://images.unsplash.com/photo-1565793817984-425e29435717?w=1200&q=80',
-      }
     ]
   },
   {
@@ -207,8 +202,9 @@ export default function FeaturedProjects() {
             </div>
             <div className="projects-header-right">
               <p className="projects-subtext">
-                A curated selection of my best work spanning branding,
-                UI/UX, web design, and creative direction.
+                A curated selection of our finest interior design work —
+                spanning residential homes, commercial spaces, hospitality
+                venues and creative workspaces across India.
               </p>
             </div>
           </div>
@@ -231,11 +227,11 @@ export default function FeaturedProjects() {
         </div>
       </section>
 
-      <div className="projects-view-all-wrapper">
+      {/* <div className="projects-view-all-wrapper">
         <a href="#" className="btn btn-outline" aria-label="View all projects">
           View All Projects →
         </a>
-      </div>
+      </div> */}
     </>
   )
 }
