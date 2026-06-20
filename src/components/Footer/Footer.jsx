@@ -33,12 +33,7 @@ export default function Footer() {
           </ul>
 
           {/* Socials */}
-          <div className="footer-socials">
-            <a href="#" className="footer-social-icon" aria-label="Twitter">𝕏</a>
-            <a href="#" className="footer-social-icon" aria-label="LinkedIn">in</a>
-            <a href="#" className="footer-social-icon" aria-label="Dribbble">🏀</a>
-            <a href="#" className="footer-social-icon" aria-label="Behance">Be</a>
-          </div>
+
         </div>
 
         <div className="footer-divider" />
