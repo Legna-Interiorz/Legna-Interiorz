@@ -76,9 +76,6 @@ export default function About() {
                   Karur – 639002</span>
               </div>
             </div>
-            <a href="#contact" className="about-story-link" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}>
-              My Story →
-            </a>
           </div>
 
           {/* Right: Image + Stats */}
