@@ -95,6 +95,16 @@ const PROJECTS = [
         image: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1200&q=80',
       }
     ]
+  },
+  {
+    categoryTitle: 'Restaurants',
+    items: [
+      {
+        title: 'Legna Restaurant Design',
+        tags: ['Dining', 'Ambience'],
+        video: '/projects/LEGNA.mp4',
+      }
+    ]
   }
 ]
 
@@ -109,14 +119,25 @@ const ProjectGalleryCard = forwardRef(({ categoryData }, ref) => {
 
   return (
     <article className="project-card" ref={ref}>
-      {/* Full-bleed image fills the entire card */}
+      {/* Full-bleed media — video or image */}
       <div className="project-image-inner" key={`${categoryData.categoryTitle}-${idx}`}>
-        <img
-          src={currentItem.image}
-          alt={currentItem.title}
-          className="project-real-img"
-          loading="lazy"
-        />
+        {currentItem.video ? (
+          <video
+            src={currentItem.video}
+            className="project-real-img"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : (
+          <img
+            src={currentItem.image}
+            alt={currentItem.title}
+            className="project-real-img"
+            loading="lazy"
+          />
+        )}
       </div>
 
       {/* Gradient scrim at bottom for text readability */}
