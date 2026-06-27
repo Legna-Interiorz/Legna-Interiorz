@@ -102,7 +102,7 @@ const PROJECTS = [
       {
         title: 'Legna Restaurant Design',
         tags: ['Dining', 'Ambience'],
-        video: '/projects/LEGNA.mp4',
+        video: 'https://res.cloudinary.com/dribefvpq/video/upload/v1782584890/LEGNA_l6bgmy.mp4',
       }
     ]
   }
@@ -119,9 +119,18 @@ const ProjectGalleryCard = forwardRef(({ categoryData }, ref) => {
 
   return (
     <article className="project-card" ref={ref}>
-      {/* Full-bleed media — video or image */}
+      {/* Full-bleed media — embed, video or image */}
       <div className="project-image-inner" key={`${categoryData.categoryTitle}-${idx}`}>
-        {currentItem.video ? (
+        {currentItem.embed ? (
+          <iframe
+            src={currentItem.embed + '?autoplay=1'}
+            className="project-real-img"
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            style={{ border: 'none', width: '100%', height: '100%' }}
+            title={currentItem.title}
+          />
+        ) : currentItem.video ? (
           <video
             src={currentItem.video}
             className="project-real-img"
