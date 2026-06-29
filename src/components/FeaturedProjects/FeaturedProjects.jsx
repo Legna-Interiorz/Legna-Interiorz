@@ -100,7 +100,7 @@ const PROJECTS = [
     categoryTitle: 'Restaurants',
     items: [
       {
-        title: 'Legna Restaurant Design',
+        title: 'Restaurant interiors',
         tags: ['Dining', 'Ambience'],
         video: 'https://res.cloudinary.com/dribefvpq/video/upload/v1782584890/LEGNA_l6bgmy.mp4',
       }
